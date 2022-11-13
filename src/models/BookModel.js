@@ -29,9 +29,9 @@ const BookModel = new mongoose.Schema(
         "https://dictionary.cambridge.org/vi/images/thumb/book_noun_001_01679.jpg?version=5.0.225",
     },
     img_invole: {
-      type: String,
+      type: Array,
       default:
-        "https://dictionary.cambridge.org/vi/images/thumb/book_noun_001_01679.jpg?version=5.0.225",
+         "https://dictionary.cambridge.org/vi/images/thumb/book_noun_001_01679.jpg?version=5.0.225",
     },
     price_rent: {
       type: Number,
@@ -48,7 +48,7 @@ const BookModel = new mongoose.Schema(
       default: "Description Book",
     },
     feedback: {
-      type: Array,
+      type: Object,
       default: [],
     },
   },

@@ -5,30 +5,41 @@ const OrderModel = mongoose.Schema(
     id_user: {
       type: Schema.Types.ObjectId,
       require: true,
-      ref: "UserModel",
+      ref: "User",
     },
+  items: [{
     id_book: {
-      type: String,
+      type: Schema.Types.ObjectId,
       require: true,
-      ref: "Book",
+      ref: "Book"
     },
-    id_coupon: {
-      type: String,
-      require: true,
-      ref: "Coupon",
+    quantity: {
+      type: Number,
+      default: 1
     },
     type_order: {
       type: String,
       require: true,
     },
-    quantity: {
+    total: {
       type: Number,
-      default: 0,
+      required: true,
+  },
+  }],
+    id_coupon: {
+      type: Schema.Types.Array,
+      ref: "Coupon",
     },
     status: {
-      type: String,
-      default: "Waiting...",
+      type: Number,
+      // 0 la dang cho nguoi dung process 1 la gui len admin 2 la admin chap nhan
+      default: 0,
     },
+    subTotal: {
+      type: Number,
+      default: 0
+    },
+    
   },
   { timestamps: true }
 );

@@ -10,20 +10,16 @@ const CouponModel = mongoose.Schema(
       require: true,
     },
     date_from: {
-      type: String,
+      type: Date,
       require: true,
     },
     date_to: {
-      type: String,
+      type: Date,
       require: true,
     },
     code: {
       type: String,
       require: true,
-    },
-    title_coupon: {
-      type: String,
-      default: "",
     },
     number_decrement: {
       type: Number,

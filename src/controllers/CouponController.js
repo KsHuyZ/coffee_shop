@@ -1,9 +1,18 @@
 const Coupon = require("../models/CouponModel");
 const CouponController = {
   getAllCoupon: async (req, res, next) => {
+
+
     try {
       const coupon = await Coupon.find({});
-      return res.status(200).json(coupon);
+      if(req.cookies.role==="1"){
+        res.render("adminLayout/main",{
+          body: "components/coupon/list",
+          coupons: coupon
+        })
+      } else {
+        res.redirect("/error")
+      }
     } catch (error) {
       return res.status(500).json({
         error: error.message,
@@ -11,9 +20,19 @@ const CouponController = {
     }
   },
 
+addCouponView: async(req,res,next)=>{
+res.render("adminLayout/main",{
+  body: "components/coupon/add"
+})
+},
+
   getCouponbyId: async (req, res, next) => {
     const coupon = await Coupon.findById(req.params.id);
-    res.status(200).json(coupon);
+    console.log({coupon: coupon.date_from})
+ res.render("adminLayout/main",{
+   body: "components/coupon/edit",
+   coupons: coupon
+ })
   },
 
   // create category
@@ -24,7 +43,6 @@ const CouponController = {
       date_from,
       date_to,
       code,
-      title_coupon,
       number_decrement,
     } = req.body;
     if (
@@ -33,7 +51,6 @@ const CouponController = {
       !date_from ||
       !date_to ||
       !code ||
-      !title_coupon ||
       !number_decrement
     ) {
       return res.status(500).json({
@@ -47,11 +64,10 @@ const CouponController = {
         date_from,
         date_to,
         code,
-        title_coupon,
         number_decrement,
       });
       coupon.save();
-      return res.status(200).json({ success: true, message: "Update success" });
+     res.redirect("/coupon")
     }
   },
 
@@ -83,14 +99,14 @@ const CouponController = {
           new: true,
         }
       );
-      res.status(200).json({ success: true, message: "Update Success!!!?" });
+     res.redirect("/coupon")
     } catch (error) {
       res.status(500).json(error.message);
     }
   },
 
   deleteCoupon: async (req, res, next) => {
-    const id = req.params.id;
+    const id = req.params.id; 
     try {
       await Coupon.findByIdAndDelete(id);
       res.status(200).json({ success: true, message: "Misson Success" });

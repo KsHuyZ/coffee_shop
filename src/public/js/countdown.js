@@ -7,11 +7,11 @@ $('[data-countdown]').each(function () {
         finalDate = $(this).data('countdown');
     if (!$this.hasClass('countdown-full-format')) {
         $this.countdown(finalDate, function (event) {
-            $this.html(event.strftime('<span class="countdown-time"><span>%D</span><small>days</small></span> <span class="countdown-time"><span>%H</span><small>hours</small></span> <span class="countdown-time"><span>%M</span><small>minutes</small></span> <span class="countdown-time"><span>%S</span><small>seconds</small></span>'));
+            $this.html(event.strftime('<span class="countdown-time"><span>%D</span><small>Ngày</small></span> <span class="countdown-time"><span>%H</span><small>Giờ</small></span> <span class="countdown-time"><span>%M</span><small>Phút</small></span> <span class="countdown-time"><span>%S</span><small>giây</small></span>'));
         });
     } else {
         $this.countdown(finalDate, function (event) {
-            $this.html(event.strftime('<span class="countdown-time"><span>%D</span><small>days</small></span> <span class="countdown-time"><span>%H</span><small>hours</small></span> <span class="countdown-time"><span>%M</span><small>minutes</small></span> <span class="countdown-time"><span>%S</span><small>seconds</small></span>'));
+            $this.html(event.strftime('<span class="countdown-time"><span>%D</span><small>Ngày</small></span> <span class="countdown-time"><span>%H</span><small>Giờ</small></span> <span class="countdown-time"><span>%M</span><small>Phút</small></span> <span class="countdown-time"><span>%S</span><small>giây</small></span>'));
         });
     }
 });
